@@ -8,6 +8,8 @@
   margin: 0 auto;
   width: 100%;
   max-width: 175.2rem;
+
+  overflow: hidden;
 }
 
 #header {
@@ -246,4 +248,17 @@
 .scroll-down-box img {
   width: 1rem;
   height: 0.8rem;
+}
+
+.main-search-container {
+  margin-top: 12rem;
+}
+
+.section-title {
+  font-family: "Pretendard";
+  font-weight: 800;
+  font-size: 4.4rem;
+  color: #000;
+
+  text-align: center;
 }
