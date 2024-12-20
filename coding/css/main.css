@@ -6,7 +6,8 @@
 
 .inner {
   margin: 0 auto;
-  width: 175rem;
+  width: 100%;
+  max-width: 175.2rem;
 }
 
 #header {
@@ -16,8 +17,16 @@
   height: 10rem;
   position: absolute;
   z-index: 100;
+}
 
-  background: #f5f;
+#header::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+
+  z-index: 100;
 }
 
 .gnb {
@@ -54,6 +63,10 @@
   height: 10rem;
 
   color: #fff;
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-size: 2.1rem;
+  letter-spacing: 0.03em;
 }
 
 .menu li a {
@@ -63,4 +76,174 @@
 
 .menu-util {
   display: inline-flex;
+  color: #fff;
+  align-items: center;
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-size: 1.9rem;
+}
+
+.menu-util .btn-search {
+  display: block;
+  width: 4.8rem;
+  height: 4.8rem;
+  background: url(../Img/icon-search.png) no-repeat 0 0 / contain;
+}
+
+.menu-util p a {
+  padding: 1rem 1.6rem;
+}
+
+.main {
+  margin: 0 auto;
+}
+
+.main-banner-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.main-banner-item {
+  display: block;
+  /*   background: #ff5; */
+  width: 100%;
+  height: 83.2rem;
+}
+
+.img-box {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.main-banner-text {
+  max-width: 175.2rem;
+  margin: 0 auto;
+
+  position: absolute;
+  top: 50%;
+  left: 27%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.main-banner-text p {
+  font-family: "Pretendard";
+  font-weight: 300;
+  font-size: 6.8rem;
+  color: #fff;
+  margin-top: 2rem;
+}
+
+.main-banner-text .title {
+  background: linear-gradient(92.93deg, #0086ff 7.96%, #61d2e8 100.45%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.banner-swiper-box {
+  display: flex;
+  position: absolute;
+
+  bottom: 20%;
+  left: 14%;
+  transform: translate(-50%, -50%);
+
+  z-index: 101;
+}
+
+.button-box {
+  display: flex;
+}
+
+.banner-button-prev,
+.banner-button-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+
+  background: #fff no-repeat center;
+  cursor: pointer;
+}
+
+.banner-button-prev {
+  background-image: url(../Img/icon-arrow-prev.png);
+}
+
+.banner-button-next {
+  background-image: url(../Img/icon-arrow-next.png);
+  margin-left: 0.4rem;
+}
+
+.banner-swiper-wrap {
+  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.8rem;
+  margin-left: 0.4rem;
+  height: 4rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+
+  border-radius: 2rem;
+}
+
+.banner-swiper-wrap span {
+  font-family: "Pretendard";
+  font-weight: 700;
+
+  font-size: 1.8rem;
+  margin-left: 0.2rem;
+}
+
+.banner-swiper-wrap .fence {
+  font-size: 1.6rem;
+}
+
+.banner-swiper-wrap .toggle-slide-button {
+  cursor: pointer;
+  margin-left: 1.4rem;
+  background: no-repeat 0 0 / contain;
+}
+
+.banner-swiper-wrap .toggle-slide-button span {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+
+  background-image: url(../Img/play-button.png);
+}
+
+.scroll-down-box {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.scroll-down-box p {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: #fff;
+  writing-mode: vertical-rl;
+  margin-bottom: 1.2rem;
+}
+
+.scroll-down-box img {
+  width: 1rem;
+  height: 0.8rem;
 }
