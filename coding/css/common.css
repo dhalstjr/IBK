@@ -17,6 +17,10 @@ li {
   font-size: 62.5%; /* 10px */
 }
 
+button {
+  background: none;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -46,4 +50,11 @@ body {
   height: 1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
+}
+
+.ellipsis {
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
 }
