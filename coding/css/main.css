@@ -707,3 +707,108 @@
   text-align: center;
   line-height: 1.34;
 }
+
+.main-notice-wrap {
+  /*   display: flex; */
+  /* 나는 플렉스로 했지만 홈페이지가 grid로 설정정 */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.4rem;
+}
+.notice-list {
+  width: 100%;
+  position: relative;
+}
+.notice-list h3 {
+  font-weight: 800;
+  font-family: "Pretendard";
+  color: #000;
+  font-size: 4.4rem;
+}
+
+.notice-list ul {
+  border: 1px solid #dadada;
+  border-radius: 4rem;
+  margin-top: 3.2rem;
+  padding: 2.8rem 6.2rem;
+
+  line-height: 1.38;
+}
+
+.main-notice li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 2.6rem 1rem 2.6rem; /* 패딩으로 안하고 크기로 줬는데 본페이지는 패딩으로 줘서 패딩으로 바꿈 */
+  overflow: hidden;
+  border-bottom: 1px solid #dadada;
+}
+
+.main-notice li:nth-child(4) a {
+  border-bottom: none;
+}
+
+.main-notice .notice-title1 {
+  font-weight: 600;
+  font-size: 2.6rem;
+  font-family: "Pretendard";
+}
+
+.main-notice .notice-title1:hover {
+  text-decoration: underline; /* 밑줄 */
+  text-underline-position: under; /* 밑줄이 바로 밑이 아니라 살짝 띄워진 느낌 */
+}
+.main-notice .notice-title2 {
+  font-weight: 500;
+  font-size: 2.2rem;
+  color: #666;
+  font-family: "Pretendard";
+  flex-shrink: 0;
+
+  margin-left: 1.6rem;
+}
+
+#btn-plus {
+  display: block;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  background: #fafafa no-repeat 50% / cover;
+
+  background-image: url(../Img/icon_more_board.png);
+
+  position: absolute;
+  top: 0.4rem;
+  left: 20.2rem;
+
+  transition: 0.4s;
+}
+
+#btn-plus:hover {
+  background-image: url(../Img/icon_more_board_hover.png);
+  transform: translateY(-0.8rem);
+  box-shadow: 0px 10px 25px 4px #1a61c750;
+}
+
+#footer {
+  background: #102543;
+  color: #fff;
+  width: 100%;
+  height: 72rem;
+}
+
+.in-footer {
+  padding: 12.4rem 9rem 14.8rem;
+}
+
+.scroll-hidden {
+  position: absolute;
+  margin: -1px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

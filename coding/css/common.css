@@ -54,4 +54,18 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
   -webkit-box-orient: vertical;
+
+  display: -webkit-box;
+
+  word-break: keep-all;
+}
+
+.ellipsis2 {
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+
+  word-break: keep-all;
 }
