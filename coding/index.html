@@ -5,36 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IBK자산은행-클론코딩</title>
 
-    <script src="./js/jquery-3.7.1.min.js"></script>
-    <script src="./js/main.js"></script>
-
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/common.css" />
+
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script src="./js/main.js"></script>
   </head>
   <body>
+    <!-- 모달 창 -->
+    <dialog id="modal">
+      <meta charset="utf-8" />
+      <title></title>
+      <link rel="stylesheet" href="./css/modal-fund.css" />
+      <div class="modal-container">
+        <!-- start-modal-header -->
+        <div class="modal-header">
+          <div class="modal-wrapper">
+            <button onclick="modal.close()">
+              <span class="close"><i class="hidden">닫기</i></span>
+            </button>
+          </div>
+          <h2 class="title">펀드검색</h2>
+        </div>
+        <!-- end-modal-header -->
+
+        <!-- start-modal-body -->
+        <div class="modal-body scroll">
+          <div class="fund-list-search-form">
+            <label for="modalSearchText" class="">
+              <i class="hidden">펀드 이름</i></label
+            >
+            <input
+              id="modalSearchText"
+              type="text"
+              placeholder="찾으시는 펀드를 검색해보세요."
+            />
+            <button
+              id="modalSearchButton"
+              class="search"
+              title="펀드 검색"
+            ></button>
+          </div>
+
+          <div class="search-wrapper">
+            <p class="search-result">
+              '전체&nbsp;'
+              <span id="totalCount" class="bold">1</span>
+              '건'
+              <span class="pc">의 검색결과가 있습니다.</span>
+            </p>
+            <p class="body1">
+              <span class="pc">적용</span>
+              "기준일:&nbsp;"
+              <span id="baseDate" class="bold">2025-01-16</span>
+            </p>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="table-list">
+              <caption>
+                <i class="hidden">펀드검색(기준가격조회)</i>
+              </caption>
+              <colgroup>
+                <col class="w10p" />
+                <col class="w20p" />
+                <col class="w15p" />
+                <col class="w10p" />
+                <col class="w10p" />
+                <col class="w10p" />
+                <col class="w10p" />
+              </colgroup>
+              <thead class="bold">
+                <tr>
+                  <td id scope="col">상품유형</td>
+                  <td id scope="col">펀드명</td>
+                  <td id scope="col">설정일</td>
+                  <td id scope="col">기준가</td>
+                  <td id scope="col">수익률<br />최근3개월</td>
+                  <td id scope="col">수익률<br />최근6개월</td>
+                  <td id scope="col">수익률<br />최근1년</td>
+                </tr>
+              </thead>
+              <tbody id="modalBestPriceTab">
+                <tr>
+                  <td>재간접</td>
+                  <td>
+                    <a href="#" class="ellipsis">
+                      IBK 플레인바닐라 EMP 증권투자신탁[혼합-재간접형]
+                    </a>
+                  </td>
+                  <td>2019.01.14</td>
+                  <td>1.294.7</td>
+                  <td class="primary">-2.13</td>
+                  <td class="primary">-1.99</td>
+                  <td class="secondaryDark">9.08</td>
+                </tr>
+              </tbody>
+
+              <div class="modal-pagination">
+                <button class="max-prev-button hidden"></button>
+                <button class="prev-button hidden"></button>
+                <ul class="modal-page-list">
+                  <li class="active">
+                    <button>1</button>
+                  </li>
+                </ul>
+                <button class="next-button hidden"></button>
+                <button class="max-next-button hidden"></button>
+              </div>
+            </table>
+          </div>
+        </div>
+        <!-- end-modal-body -->
+      </div>
+      <script src="./js/modal.js"></script>
+    </dialog>
+
     <div class="wrap">
       <!-- header -->
       <header id="header">
-        <div class="inner">
+        <div class="in-header">
+          <h1>
+            <a href="#" class="logo"> <i class="hidden">IBK자산운용 로고</i></a>
+          </h1>
           <nav id="gnb" class="gnb">
-            <h1>
-              <a href="#" class="logo">
-                <i class="hidden">IBK자산운용 로고</i></a
-              >
-            </h1>
             <ul class="menu">
-              <li><a href="#">회사소개</a></li>
-              <li><a href="#">펀드상품</a></li>
-              <li><a href="#">ETF상품</a></li>
-              <li><a href="#">고객센터</a></li>
+              <li>
+                <a href="#">회사소개</a>
+                <!-- 슬라이드 메뉴를 위한 HTML -->
+                <ul class="submenu">
+                  <li><a href="#">회사소개</a></li>
+                  <li class="mt-10"><a href="#">운용프로세스</a></li>
+                  <li class="mt-10"><a href="#">찾아오시는 길</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">펀드상품</a>
+                <ul class="submenu">
+                  <li><a href="#">전체상품</a></li>
+                  <li class="mt-10"><a href="#">펀드맵</a></li>
+                  <li class="mt-10"><a href="#">펀드판매사</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">ETF상품</a>
+                <ul class="submenu">
+                  <li><a href="#">전체상품</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">고객센터</a>
+                <ul class="submenu">
+                  <li><a href="#">공지사항</a></li>
+                  <li class="mt-10"><a href="#">공시사항</a></li>
+                </ul>
+              </li>
             </ul>
-            <div class="menu-util">
-              <button class="btn-search"><i class="hidden">검색</i></button>
-              <p class="lang-indicator"><a href="#">KR</a></p>
-              <p class="lang-indicator"><a href="#">EN</a></p>
-            </div>
           </nav>
+          <div class="menu-util">
+            <button class="btn-search"><i class="hidden">검색</i></button>
+            <p class="lang-indicator"><a href="#">KR</a></p>
+            <p class="lang-indicator"><a href="#" class="op7">EN</a></p>
+          </div>
         </div>
       </header>
       <!-- end : header -->
@@ -43,42 +178,122 @@
         <!-- 메인배너 페이지  -->
         <section id="mainBanner">
           <div class="main-banner-container">
-            <div class="main-banner-item">
-              <div class="img-box">
-                <figure><img src="./Img/mainbanner-img2.png" alt="" /></figure>
+            <!-- swiper에 필요한 HTML1 - swiper-->
+            <div class="swiper banner-swiper">
+              <!-- swiper에 필요한 HTML2 :swiper-wrapper -->
+              <div class="swiper-wrapper">
+                <!-- swiper에 필요한 HTML3 :swiper-slide 여러개 -->
+                <div class="swiper-slide">
+                  <div class="main-banner-item">
+                    <div class="img-box">
+                      <figure>
+                        <img src="./Img/mainbanner-img2.png" alt="" />
+                      </figure>
+                    </div>
+                    <div class="main-banner-text">
+                      <p class="text-top">한국의 업종 대표</p>
+                      <p>주식에 투자하는</p>
+                      <p class="title">IBK 그랑프리 한국대표 펀드</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="main-banner-item">
+                    <div class="img-box">
+                      <figure>
+                        <img src="./Img/mainbanner-img2.png" alt="" />
+                      </figure>
+                    </div>
+                    <div class="main-banner-text">
+                      <p class="text-top">저렴한 보수로</p>
+                      <p>장기 연금투자에 유리한</p>
+                      <p class="title">IBK 로우코스트 TDF 펀드</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="main-banner-item">
+                    <div class="img-box">
+                      <figure>
+                        <img src="./Img/mainbanner-img2.png" alt="" />
+                      </figure>
+                    </div>
+                    <div class="main-banner-text">
+                      <p class="text-top">고배당 인컴으로 다지고</p>
+                      <p>고성장 자산으로 올린</p>
+                      <p class="title">IBK 로우코스트 TDF 펀드</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="main-banner-item">
+                    <div class="img-box">
+                      <figure>
+                        <img src="./Img/mainbanner-img2.png" alt="" />
+                      </figure>
+                    </div>
+                    <div class="main-banner-text">
+                      <p class="text-top">저렴한 보수로</p>
+                      <p>장기 연금투자에 유리한</p>
+                      <p class="title">IBK 로우코스트 TDF 펀드</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="main-banner-item">
+                    <div class="img-box">
+                      <figure>
+                        <img src="./Img/mainbanner-img2.png" alt="" />
+                      </figure>
+                    </div>
+                    <div class="main-banner-text">
+                      <p class="text-top">저렴한 보수로</p>
+                      <p>장기 연금투자에 유리한</p>
+                      <p class="title">IBK 로우코스트 TDF 펀드</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="main-banner-item">
+                    <div class="img-box">
+                      <figure>
+                        <img src="./Img/mainbanner-img2.png" alt="" />
+                      </figure>
+                    </div>
+                    <div class="main-banner-text">
+                      <p class="text-top">저렴한 보수로</p>
+                      <p>장기 연금투자에 유리한</p>
+                      <p class="title">IBK 로우코스트 TDF 펀드</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <div class="main-banner-text">
-              <p class="text-top">저렴한 보수로</p>
-              <p>장기 연금투자에 유리한</p>
-              <p class="title">IBK 로우코스트 TDF 펀드</p>
-            </div>
-
-            <div class="banner-swiper-box">
-              <div class="button-box">
-                <button class="banner-button-prev"></button>
-                <button class="banner-button-next"></button>
+              <!-- 슬라이더 오른쪽 갔을 떄 버튼이 안보인 이유는 swiper-wrap 안에 있어서 버튼을 보이게 하고 싶다면 영역 완전히 밖으로  -->
+              <div class="banner-swiper-box">
+                <div class="button-box">
+                  <button class="banner-swiper-button-prev"></button>
+                  <button class="banner-swiper-button-next"></button>
+                </div>
+                <div class="banner-swiper-wrap">
+                  <div class="banner-swiper-pagination">
+                    <span class="swiper-pagination-current">1</span>
+                    <!--     <span class="fence">/</span> -->'/'
+                    <span class="swiper-pagination-total">6</span>
+                  </div>
+                  <button class="toggle-slide-button">
+                    <span></span>
+                  </button>
+                </div>
               </div>
-
-              <div class="banner-swiper-wrap">
-                <span class="swiper-current">1</span>
-                <span class="fence">/</span>
-                <span class="swiper-total">6</span>
-
-                <button class="toggle-slide-button">
-                  <span></span>
-                </button>
+              <div class="scroll-down-box">
+                <p class="scroll-down-text">SCROOL DOWN</p>
+                <img
+                  src="./Img/scroll-down-icon.png"
+                  alt="화살표 아이콘"
+                  class="scroll-down-icon"
+                />
               </div>
-            </div>
-
-            <div class="scroll-down-box">
-              <p class="scroll-down-text">SCROOL DOWN</p>
-              <img
-                src="./Img/scroll-down-icon.png"
-                alt="화살표 아이콘"
-                class="scroll-down-icon"
-              />
             </div>
           </div>
         </section>
@@ -95,25 +310,37 @@
                   <ul class="main-theme-list">
                     <li>
                       <a href="#" class="none">
-                        <img src="./Img/fund-theme-icon1.png" alt="" />
+                        <img
+                          src="./Img/fund-theme-icon1.png"
+                          alt="펀드 아이콘1"
+                        />
                         <p>#퇴직연금</p>
                       </a>
                     </li>
                     <li>
                       <a href="#" class="none">
-                        <img src="./Img/fund-theme-icon2.png" alt="" />
+                        <img
+                          src="./Img/fund-theme-icon2.png"
+                          alt="펀드 아이콘2"
+                        />
                         <p>#ETF</p>
                       </a>
                     </li>
                     <li>
                       <a href="#" class="none">
-                        <img src="./Img/fund-theme-icon3.png" alt="" />
+                        <img
+                          src="./Img/fund-theme-icon3.png"
+                          alt="펀드 아이콘3"
+                        />
                         <p>#EMP</p>
                       </a>
                     </li>
                     <li>
                       <a href="#" class="none">
-                        <img src="./Img/fund-theme-icon4.png" alt="" />
+                        <img
+                          src="./Img/fund-theme-icon4.png"
+                          alt="펀드 아이콘4"
+                        />
                         <p>#TDF</p>
                       </a>
                     </li>
@@ -154,8 +381,9 @@
         <section id="representativeFund">
           <div class="main-con">
             <h2 class="section-title">IBK 자산운용 대표펀드</h2>
-            <div class="representative-fund-swiper">
-              <div class="swiper-wrap">
+            <!-- swiper 사용 -->
+            <div class="swiper representative-fund-swiper">
+              <div class="swiper-wrap swiper-wrapper">
                 <div class="swiper-slide">
                   <a href="#">
                     <div class="img-box2">
@@ -222,10 +450,10 @@
                     </div>
                   </a>
                 </div>
-                <!--                 <div class="swiper-slide">
+                <div class="swiper-slide">
                   <a href="#">
                     <div class="img-box2">
-                      <img src="" alt="" />
+                      <img src="./Img/representative-img4.png" alt="" />
                       <p class="badge">대표펀드#5</p>
                     </div>
                     <div class="content-box">
@@ -242,7 +470,7 @@
                 <div class="swiper-slide">
                   <a href="#">
                     <div class="img-box2">
-                      <img src="" alt="" />
+                      <img src="./Img/representative-img4.png" alt="" />
                       <p class="badge">대표펀드#6</p>
                     </div>
                     <div class="content-box">
@@ -259,7 +487,7 @@
                 <div class="swiper-slide">
                   <a href="#">
                     <div class="img-box2">
-                      <img src="" alt="" />
+                      <img src="./Img/representative-img4.png" alt="" />
                       <p class="badge">대표펀드#7</p>
                     </div>
                     <div class="content-box">
@@ -276,7 +504,7 @@
                 <div class="swiper-slide">
                   <a href="#">
                     <div class="img-box2">
-                      <img src="" alt="" />
+                      <img src="./Img/representative-img4.png" alt="" />
                       <p class="badge">대표펀드#8</p>
                     </div>
                     <div class="content-box">
@@ -289,24 +517,26 @@
                       </p>
                     </div>
                   </a>
-                </div> -->
+                </div>
               </div>
-            </div>
 
-            <div class="swiper-custom-pagination-box">
-              <button class="custom-button-prev"></button>
-              <div class="custom-swiper-pagination">
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
+              <div class="swiper-custom-pagination-box">
+                <button class="custom-button-prev"></button>
+                <div class="custom-swiper-pagination">
+                  <span class="swiper-pagination-bullet"></span>
+                  <span class="swiper-pagination-bullet"></span>
+                  <span class="swiper-pagination-bullet"></span>
+                  <span class="swiper-pagination-bullet"></span>
+                  <span class="swiper-pagination-bullet"></span>
+                  <span class="swiper-pagination-bullet"></span>
+                  <span class="swiper-pagination-bullet"></span>
+                  <span class="swiper-pagination-bullet"></span>
+                </div>
+                <button class="toggle-auto-button play">
+                  <span></span>
+                </button>
+                <button class="custom-button-next"></button>
               </div>
-              <button class="toggle-auto-button"></button>
-              <button class="custom-button-next"></button>
             </div>
           </div>
         </section>
@@ -319,7 +549,7 @@
 
             <div class="date-wrap">
               <ul class="btn-date">
-                <li><button>3년</button></li>
+                <li class="active"><button>3년</button></li>
                 <li><button>1년</button></li>
                 <li><button>6개월</button></li>
                 <li><button>3개월</button></li>
@@ -550,8 +780,8 @@
             <div class="footer-util">
               <div class="select-wrap">
                 <button class="btn-select">유관기관</button>
-                <div class="custom-select active">
-                  <ul id="select-relate" class="scroll">
+                <div class="custom-select">
+                  <ul id="select-relate" class="scroll hidden">
                     <li><a href="#">금융감독원</a></li>
                     <li><a href="#">금융투자협회</a></li>
                     <li><a href="#">전자공시시스템(DART)</a></li>
@@ -562,8 +792,8 @@
 
               <div class="select-wrap">
                 <button class="btn-select">Family Site</button>
-                <div class="custom-select active">
-                  <ul id="select-relate" class="scroll">
+                <div class="custom-select">
+                  <ul id="select-relate" class="scroll hidden">
                     <li><a href="#">IBK기업은행</a></li>
                     <li><a href="#">IBK투자증권</a></li>
                     <li><a href="#">IBK시스템</a></li>

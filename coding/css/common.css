@@ -37,7 +37,10 @@ img {
 html,
 body {
   overflow-x: hidden;
-  font: 1.8rem/1.1 "Pretendard" sans-serif;
+}
+
+body {
+  font-family: "Pretendard";
 }
 
 .hidden {
@@ -68,4 +71,21 @@ body {
   display: -webkit-box;
 
   word-break: keep-all;
+}
+
+.mt-10 {
+  margin-top: 1rem;
+}
+
+/* 애니메이션 (스크롤) */
+@keyframes scroll-down-box-animation-arrow {
+  0% {
+    transform: translateY(-0.5rem);
+  }
+  50% {
+    transform: translateY(0.5rem);
+  }
+  100% {
+    transform: translateY(-0.5rem);
+  }
 }

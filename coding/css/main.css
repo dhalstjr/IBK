@@ -15,26 +15,21 @@
 #header {
   width: 100%;
 
-  min-width: 1752px;
-  height: 10rem;
+  height: max(10rem, 100px);
   position: absolute;
-  z-index: 100;
+  z-index: 9999;
 }
 
-#header::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background: #fff;
+.in-header {
+  position: relative;
+  /* display: flex; */
 
-  z-index: 100;
+  justify-content: center;
 }
 
 .gnb {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /*   display: flex;
+  align-items: center; */
 
   width: 100%;
   height: 100%;
@@ -42,27 +37,45 @@
   z-index: 99;
 }
 
-.gnb h1 a {
+/* 헤더 바닥 선 */
+.gnb::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: max(10rem, 100px);
+  width: 100%;
+  border-bottom: 1px solid #ececec;
+
+  z-index: 100;
+}
+
+.logo {
   display: block;
   width: 20rem;
   height: 4.4rem;
   background: url(../Img/logo.png) no-repeat 0 0 / contain;
+
+  position: absolute;
+  left: 3.28%;
+  top: max(5rem, 50px);
+  transform: translateY(-50%);
+
+  z-index: 999;
 }
 
 .menu {
   display: flex;
-  align-items: center;
   justify-content: center;
-
   margin: 0 auto;
+  /*   position: relative; */
 }
 
-.menu li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 20rem;
-  height: 10rem;
+.menu > li {
+  text-align: center;
+  max-width: 26rem;
+  height: 100%;
+  width: 12.5%;
 
   color: #fff;
   font-family: "Pretendard";
@@ -71,13 +84,51 @@
   letter-spacing: 0.03em;
 }
 
-.menu li a {
+/* >를 사용해야 서브메뉴의 li와 a에 명령이 들어가지 않음 */
+.menu > li > a {
   display: inline-block;
   padding: 0 2.16em;
+  min-width: 20rem;
+  line-height: max(10rem, 100px);
+}
+
+/* 슬라이드 메뉴를 위한 CSS */
+
+.submenu {
+  /*   position: absolute;
+  top: 100px; */
+  display: block;
+  width: 100%;
+  min-width: 200px;
+  padding: 4.6rem 0;
+  /* 슬라이드 다운되면서 보일 수 있도록 */
+  margin-top: -900px;
+  text-align: center;
+}
+
+.submenu > li {
+  /* 자바스크립트를 위해 안보이게 */
+  /*   opacity: 0; */
+}
+.submenu > li > a {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  text-wrap: nowrap;
+  border: 1px solid #000;
+
+  padding: 1rem 0;
+  font-weight: 500;
 }
 
 .menu-util {
   display: inline-flex;
+  position: absolute;
+  right: 3.28%;
+  top: max(5rem, 50px);
+  transform: translateY(-50%);
+  z-index: 999;
+
   color: #fff;
   align-items: center;
   font-family: "Pretendard";
@@ -96,12 +147,31 @@
   padding: 1rem 1.6rem;
 }
 
-.main {
+.menu-util p a .op7 {
+  opacity: 0.7;
+}
+
+/* 메인 페이지1 CSS */
+
+#main {
   margin: 0 auto;
 }
 
+#mainBanner {
+  position: relative;
+}
 .main-banner-container {
   position: relative;
+  /*   overflow: hidden; */
+}
+
+/* swiper를 위한 CSS */
+.main-banner-container .swiper {
+  display: block;
+
+  width: 100%;
+  height: 83.2rem;
+
   overflow: hidden;
 }
 
@@ -110,9 +180,10 @@
   /*   background: #ff5; */
   width: 100%;
   height: 83.2rem;
+  cursor: default;
 }
 
-.img-box {
+/* .img-box {
   display: block;
   position: absolute;
   top: 0;
@@ -120,6 +191,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+} */
+
+.img-box {
+  background: #000;
+}
+
+.img-box > figure {
+  width: 100%;
+  height: 100%;
+}
+.img-box > figure img {
+  width: inherit;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
 }
 
 .main-banner-text {
@@ -157,15 +244,15 @@
   left: 14%;
   transform: translate(-50%, -50%);
 
-  z-index: 101;
+  z-index: 999;
 }
 
 .button-box {
   display: flex;
 }
 
-.banner-button-prev,
-.banner-button-next {
+.banner-swiper-button-prev,
+.banner-swiper-button-next {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,11 +264,11 @@
   cursor: pointer;
 }
 
-.banner-button-prev {
+.banner-swiper-button-prev {
   background-image: url(../Img/icon-arrow-prev.png);
 }
 
-.banner-button-next {
+.banner-swiper-button-next {
   background-image: url(../Img/icon-arrow-next.png);
   margin-left: 0.4rem;
 }
@@ -200,7 +287,7 @@
   border-radius: 2rem;
 }
 
-.banner-swiper-wrap span {
+.banner-swiper-pagination span {
   font-family: "Pretendard";
   font-weight: 700;
 
@@ -212,18 +299,56 @@
   font-size: 1.6rem;
 }
 
-.banner-swiper-wrap .toggle-slide-button {
-  cursor: pointer;
-  margin-left: 1.4rem;
-  background: no-repeat 0 0 / contain;
+#mainBanner .toggle-slide-button > span {
+  background: #fff;
+  mask-image: url(../Img/play-stop-button-2.svg);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  -webkit-mask-image: url(../Img/play-stop-button-2.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 
-.banner-swiper-wrap .toggle-slide-button span {
-  display: inline-block;
+#mainBanner .toggle-slide-button.play > span {
+  background: #fff;
+  mask-image: url(../Img/play-butto2.png);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  -webkit-mask-image: url(../Img/play-button.png);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.banner-swiper-wrap .toggle-slide-button,
+.banner-swiper-wrap .toggle-slide-button.play > span {
+  cursor: pointer;
+  margin-left: 1.4rem;
+}
+
+.banner-swiper-wrap .toggle-slide-button > span {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+
+  background-image: url(../Img/play-stop-button-2.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.banner-swiper-wrap .toggle-slide-button.play > span {
+  display: block;
   width: 1.6rem;
   height: 1.6rem;
 
   background-image: url(../Img/play-button.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .scroll-down-box {
@@ -248,6 +373,9 @@
 .scroll-down-box img {
   width: 1rem;
   height: 0.8rem;
+
+  /* 애니메이션 */
+  animation: scroll-down-box-animation-arrow 1.5s ease-in-out infinite;
 }
 
 .main-search-container {
@@ -285,6 +413,18 @@
   background: url(../Img/go-fund-map-icon1.png) no-repeat 50% / cover;
 
   border-radius: 50%;
+
+  transition: 0.3s;
+}
+
+.link-more:hover {
+  background: url(../Img/go-fund-map-icon1-hover.png);
+  transform: translateY(-0.8rem);
+  box-shadow: 0px 10px 25px 2px #1a61c750;
+}
+
+.link-more:focus {
+  transition: none;
 }
 
 /* 그리드 사용 (반응형 디자인시 적합하다함. */
@@ -304,6 +444,22 @@
   padding: 3.4rem;
   border: 1px solid #dadada;
   border-radius: 4rem;
+
+  transition: 0.3s;
+
+  z-index: 10;
+}
+
+.main-theme-list li a:hover {
+  border: 1px solid #1a61c7;
+  box-shadow: 0px 10px 25px 2px #1a61c752;
+
+  background: #1a61c7;
+  color: #fff;
+  transform: translateY(-0.8rem);
+  cursor: pointer;
+
+  z-index: 10;
 }
 
 .main-theme-list li a > img {
@@ -357,6 +513,14 @@
 
   padding: 1.6rem;
   background: none;
+
+  transition: 0.3s;
+}
+
+.main-btn-keyword:hover,
+.main-btn-keyword:focus {
+  text-decoration: underline; /* 밑줄 */
+  color: #003e82;
 }
 
 #representativeFund {
@@ -375,35 +539,36 @@
 .representative-fund-swiper {
   margin-top: 8.2rem;
 }
-.swiper-wrap {
+.representative-fund-swiper > .swiper-wrap {
   display: flex;
 }
-.swiper-slide {
-  width: 42rem;
+.representative-fund-swiper > .swiper-wrap > .swiper-slide {
+  width: 42rem !important;
   /*   background: #ff5; */
   margin-right: 2.4rem;
+
+  transition: 0.3s;
 }
 
-.swiper-slide a {
+.representative-fund-swiper > .swiper-wrap > .swiper-slide a {
   display: block;
   width: 100%;
   border: 1px solid #dadada;
   border-radius: 4rem;
   overflow: hidden;
 }
-.swiper-slide a > .img-box2 {
+
+.representative-fund-swiper > .swiper-wrap > .swiper-slide:hover {
+  transform: scale(1.02);
+}
+
+.representative-fund-swiper > .swiper-wrap > .swiper-slide a > .img-box2 {
   width: 100%;
   height: 31.6rem;
   position: relative;
 }
 
-.img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.swiper-slide a .badge {
+.representative-fund-swiper > .swiper-wrap > .swiper-slide a .badge {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -468,18 +633,23 @@
   margin-left: 1.8rem;
 }
 
-.toggle-auto-button {
+.toggle-auto-button > span {
+  display: block;
   width: 1.6rem;
   height: 1.6rem;
-  background: url(../Img/play-button-black.png) no-repeat 0 0 / contain;
+  background: url(../Img/play-stop-button-black.svg) no-repeat 0 0 / contain;
   margin-left: 2rem;
 }
 
-.custom-swiper-pagination {
+.toggle-auto-button.play > span {
+  background-image: url(../Img/play-button-black.png);
+}
+
+.swiper-custom-pagination-box > .custom-swiper-pagination {
   display: flex;
   width: auto;
   align-items: center;
-  gap: 0.8rem;
+  /*   gap: 0.8rem; */
 }
 
 .swiper-pagination-bullet {
@@ -487,12 +657,14 @@
   width: 1.6rem;
   height: 1.6rem;
   background: #999;
-  border-radius: 100%;
-
+  border-radius: 10rem; /* 100%를 주면 active가 망가짐 원이 */
+  cursor: pointer;
   opacity: 1;
+
+  transition: 0.3s;
 }
 
-.swiper-pagination-bullet.active {
+.custom-swiper-pagination > .swiper-pagination-bullet-active {
   width: 4.4rem;
   background: #000;
 }
@@ -825,7 +997,7 @@
 }
 
 .footer-gnb {
-  border: 1px solid #000;
+  /*   border: 1px solid #000; */
   display: flex;
   justify-content: space-between;
   /*   align-items: center; */
@@ -860,7 +1032,7 @@
   position: relative;
   width: 19rem;
   height: fit-content;
-  line-height: 1.34;
+  line-height: 1.33;
 }
 
 .footer-util .select-wrap:first-child {
@@ -876,7 +1048,7 @@
   transform: translateY(-100%);
   font-size: 1.7rem;
   font-weight: 400;
-  line-height: 1.34;
+  line-height: 1.33;
 
   background: #fff;
   border-radius: 0.8rem;
@@ -929,7 +1101,7 @@
   align-items: center;
 
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   vertical-align: middle;
 
   margin-bottom: 4rem;
@@ -948,9 +1120,11 @@
 }
 
 .footer-address p {
+  font-size: 1.8rem;
   opacity: 0.6;
 }
 .footer-address p span {
+  font-size: 1.8rem;
   opacity: 0.6;
 }
 
@@ -968,12 +1142,12 @@
 }
 .footer-notice span {
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   opacity: 0.6;
 }
 
 .footer-notice > span::before {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   content: "※";
   padding-right: 0.6rem;
 }
@@ -997,5 +1171,5 @@
 .footer-copyright-wrapper p {
   opacity: 0.6;
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
