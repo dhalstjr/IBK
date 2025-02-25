@@ -37,6 +37,26 @@
   z-index: 99;
 }
 
+.gnb:hover {
+  box-shadow: 0px 0px 24px 4px #1a61c752;
+}
+
+/* .gnb가 hover됐을 시에 흰색 배경으로 전환환  */
+.gnb::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background: #fff;
+}
+
+header#header .gnb:not(:hover):before {
+  background: transparent;
+}
+
 /* 헤더 바닥 선 */
 .gnb::after {
   content: "";
@@ -90,6 +110,17 @@
   padding: 0 2.16em;
   min-width: 20rem;
   line-height: max(10rem, 100px);
+  color: #000;
+}
+
+.menu > li > a:hover,
+.menu > li > a:focus {
+  color: #003e82;
+  font-weight: 800;
+}
+
+header#header .gnb:not(:hover) .menu > li > a {
+  color: #fff;
 }
 
 /* 슬라이드 메뉴를 위한 CSS */
@@ -101,24 +132,50 @@
   width: 100%;
   min-width: 200px;
   padding: 4.6rem 0;
+
   /* 슬라이드 다운되면서 보일 수 있도록 */
   margin-top: -900px;
   text-align: center;
+
+  line-height: 1.36;
+
+  transition: 0.4s;
+}
+
+/* 슬라이드 메뉴가 다운 */
+.gnb:hover .submenu,
+.gnb .menu:has(li > a:focus-visible) .submenu,
+.gnb .menu > li:has(> a:focus-visible) > .submenu {
+  margin-top: 0;
 }
 
 .submenu > li {
-  /* 자바스크립트를 위해 안보이게 */
-  /*   opacity: 0; */
+  /* CSS로 텍스트 구현 전 */
+  opacity: 0;
 }
+
+/* CSS로 텍스트 구현 */
+.gnb:hover .submenu li,
+.gnb .menu:has(li > a:focus-visible) .submenu li,
+.gnb:has(.submenu > li > a:focus-visible) .submenu li {
+  opacity: 1;
+}
+
+li > a.submenu-item:hover,
+li > a.submenu-item:focus {
+  background: #f1f6fb;
+  font-weight: 700;
+}
+
 .submenu > li > a {
   display: inline-block;
   width: 100%;
   text-align: center;
   text-wrap: nowrap;
-  border: 1px solid #000;
 
   padding: 1rem 0;
   font-weight: 500;
+  color: #000;
 }
 
 .menu-util {
@@ -719,7 +776,9 @@
   height: 100%;
 }
 
-.swiper-top5 {
+#TOP5Profitability .swiper-top5 {
+  /* 스케일 효과를 제대로 보여주게 하기 위해서 공간 확보. */
+  padding: 1rem;
   margin-top: 3.6rem;
 }
 
@@ -1061,6 +1120,7 @@
 .custom-select.active {
   height: 23rem;
   padding: 0.8rem;
+  transition: 0.3s;
   box-shadow: 0px 0px 24px 4px #1a61c752;
 }
 
@@ -1075,6 +1135,12 @@
 
 .custom-select ul li > a {
   display: block;
+}
+
+.custom-select ul li:hover > a {
+  text-decoration: underline;
+  text-underline-position: under;
+  color: #003e82;
 }
 
 /* #select-relate li {
@@ -1094,6 +1160,8 @@
   background-position: right 10% top 50%;
 
   text-align: left;
+
+  transition: 0.3s;
 }
 
 .footer-address {

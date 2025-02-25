@@ -195,4 +195,118 @@ $(function () {
     document.querySelector("#representativeFund .toggle-auto-button").title =
       "자동재생 시작";
   });
+
+  //펀드 TOP% 클릭 이벤트 함수
+  onClickTop5PeriodButton();
+
+  // 이것을 사용할 수 없는 이유는 데이터 함수를 불러오는 곳이 따로 있기 때문에 이 함수는 실행 불가능
+  // 펀드 TOP 5 기간 선택
+  /*   function onClickTop5PeriodButton() {
+    Array.from(document.querySelectorAll(".btn-date>li>button")).forEach(
+      (element) => {
+        element.addEventListener("click", (e) => {
+          vinns.isActiveListButton(".btn-rate-of-return-date-wrapper");
+          inquiryTopFund(e.target.dataset.month);
+        });
+      }
+    );
+  } */
+
+  // 그래셔 데이터를 불러오는 곳 없이 기능 동작을 코드로 구현(수정된 코드)
+  /*   function onClickTop5PeriodButton() {
+    // 이렇게 사용 시 button에 class가 들어간다
+    const monthButtons = document.querySelectorAll(".btn-date>li>button"); // 기능을 구현할 요소를 찾는다.
+    console.log(monthButtons);
+
+    monthButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        monthButtons.forEach((btn) => btn.classList.remove("active"));
+
+        e.target.classList.add("active");
+      });
+    });
+  } */
+
+  //다시 한번 수정된 코드
+  function onClickTop5PeriodButton() {
+    const buttons = document.querySelectorAll(".btn-date>li");
+    console.log(buttons);
+
+    buttons.forEach((button) => {
+      const item = button.querySelector("button");
+      console.log(item);
+
+      item.addEventListener("click", (e) => {
+        // 모든 li에서 'active' 클래스 삭제
+        buttons.forEach((li) => li.classList.remove("active"));
+
+        // 클릭한 li에 'active' 클래스 추가
+        button.classList.add("active");
+      });
+    });
+  }
+
+  // TOP5 슬라이드
+
+  let top55Swiper = new Swiper(".swiper-top5", {
+    slidesPerView: "auto",
+    navigation: {
+      nextEl: ".fund-button-wrap .next-button",
+      prevEl: ".fund-button-wrap .prev-button",
+    },
+  });
+
+  // 드롭다운 메뉴 열림/닫힘 제어 (active , hidden)
+  function onClickSelectButton(target) {
+    target.addEventListener("click", (e) => {
+      const customSelect = e.target.nextElementSibling;
+      const customSelectList = customSelect.querySelector("ul");
+
+      if (customSelect.classList.contains("active")) {
+        customSelectList.classList.add("hidden");
+        customSelect.classList.remove("active");
+      } else {
+        customSelectList.classList.remove("hidden");
+        customSelect.classList.add("active");
+      }
+    });
+  }
+
+  onClickFooterUtilMenu();
+
+  function onBlurSelectButton(target) {
+    const customSelect = target.nextElementSibling;
+    const customSelectAnchorElement = customSelect.querySelectorAll("a");
+    const checkElements = [target, ...customSelectAnchorElement];
+
+    checkElements.forEach((item) => {
+      item.addEventListener("blur", () => {
+        setTimeout(() => {
+          const isIn = Array.from(customSelectAnchorElement).some(
+            (checkItem) => checkItem === document.activeElement
+          );
+          if (!isIn) {
+            customSelect.classList.remove("active");
+            customSelect.querySelector("ul").classList.add("hidden");
+          }
+        }, 100);
+      });
+    });
+  }
+
+  //이 코드가 없으면 클릭 이벤트가 적용되지 않음. ->  이벤트는 직접 버튼에 등록해야 동작
+
+  function onClickFooterUtilMenu() {
+    const footerSelectButton = Array.from(
+      document.querySelectorAll(".footer-util button")
+    );
+
+    footerSelectButton.forEach((selectButton) => {
+      // footer util select button click 이벤트 함수 호출
+      onClickSelectButton(selectButton);
+
+      // footer util select button blur 이벤트 함수 호출
+      onBlurSelectButton(selectButton);
+    });
+  }
 });

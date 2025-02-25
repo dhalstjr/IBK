@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: inherit;
 }
 
 ul,
@@ -23,7 +24,6 @@ button {
 
 a {
   text-decoration: none;
-  color: inherit;
 }
 
 a:hover {
