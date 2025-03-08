@@ -70,11 +70,20 @@ header#header .gnb:not(:hover):before {
   z-index: 100;
 }
 
+/* 헤더 로고 :has 태그 사용하여 이미지 바꾸기 */
+/* :has 선택자는 부모 요소가 특정 자식을 포함하는지 여부를 판단할 때 사용 */
+/* 이 밑 CSS 내용은 header#header 요소 안에 .gnb 클래스를 가진 요소가 :hover 상태가 아닐 경우에만 스타일 저장 */
+header#header:has(.gnb:not(:hover)) .logo {
+  background: url(../Img/logo.png) no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .logo {
   display: block;
   width: 20rem;
   height: 4.4rem;
-  background: url(../Img/logo.png) no-repeat 0 0 / contain;
+  background: url(../Img/logo-color.png) no-repeat 0 0 / contain;
 
   position: absolute;
   left: 3.28%;
@@ -186,18 +195,39 @@ li > a.submenu-item:focus {
   transform: translateY(-50%);
   z-index: 999;
 
-  color: #fff;
-  align-items: center;
   font-family: "Pretendard";
   font-weight: 600;
   font-size: 1.9rem;
 }
 
-.menu-util .btn-search {
+:is(.menu-util, .mo-util-menu) > .indicator-container {
+  display: flex;
+  align-items: center;
+}
+
+.indicator-container > .btn-search {
   display: block;
   width: 4.8rem;
   height: 4.8rem;
-  background: url(../Img/icon-search.png) no-repeat 0 0 / contain;
+  background: url(../Img/icon-search-color.png) no-repeat 0 0 / contain;
+}
+
+/* :has선택자 사용 이미지 바꾸기 */
+header#header:has(.gnb:not(:hover))
+  .menu-util
+  > .indicator-container
+  > .btn-search {
+  background: url(../Img/icon-search.png);
+}
+
+/* :has선택자 사용하여 컬러 바꾸기 */
+/* 이 코드는 나중에 반응형으로 이동 */
+header#header:has(.gnb:not(:hover)) .lang-indicator > a {
+  color: #fff;
+}
+
+header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
+  opacity: 0.7;
 }
 
 .menu-util p a {
