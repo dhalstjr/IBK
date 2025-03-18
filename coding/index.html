@@ -12,7 +12,7 @@
 
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/swiper-bundle.min.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js" def></script>
   </head>
   <body>
     <!-- 모달 창 -->
@@ -121,12 +121,12 @@
         </div>
         <!-- end-modal-body -->
       </div>
-      <script src="./js/modal.js"></script>
+      <!--       <script src="./js/modal.js"></script> -->
     </dialog>
 
     <div class="wrap">
       <!-- header -->
-      <header id="header">
+      <header id="header" class="">
         <div class="in-header">
           <h1>
             <a href="/" class="logo"> <i class="hidden">IBK자산운용 로고</i></a>
@@ -186,10 +186,59 @@
           <div class="menu-util">
             <div class="indicator-container">
               <button class="btn-search"><i class="hidden">검색</i></button>
-              <p class="lang-indicator"><a href="#">KR</a></p>
-              <p class="lang-indicator"><a href="#" class="op7">EN</a></p>
+              <p class="lang-indicator pc_only"><a href="#">KR</a></p>
+              <p class="lang-indicator pc_only">
+                <a href="#" class="op7">EN</a>
+              </p>
             </div>
+            <button class="btn-mo-menu mo-only"></button>
           </div>
+
+          <nav id="mo-gnb" class="mo-gnb">
+            <div class="mo-menu-util">
+              <div class="indicator-container">
+                <a href="#" class="btn-home"></a>
+                <p class="lang-indicator">
+                  <a href="#">KR</a>
+                </p>
+                <p class="lang-indicator">
+                  <a href="#">EN</a>
+                </p>
+              </div>
+              <button class="btn-mo-menu close"></button>
+            </div>
+            <ul class="mo-menu">
+              <li class="">
+                <a href="#">회사소개</a>
+                <ul class="mo-submenu">
+                  <li><a href="#" class="menu-item">회사소개</a></li>
+                  <li><a href="#" class="menu-item">운용프로세스</a></li>
+                  <li><a href="#" class="menu-item">찾아오시는 길</a></li>
+                </ul>
+              </li>
+              <li class="">
+                <a href="#">펀드상품</a>
+                <ul class="mo-submenu">
+                  <li><a href="#" class="menu-item">전체상품</a></li>
+                  <li><a href="#" class="menu-item">펀드맵</a></li>
+                  <li><a href="#" class="menu-item">펀드판매사</a></li>
+                </ul>
+              </li>
+              <li class="">
+                <a href="#">ETF상품</a>
+                <ul class="mo-submenu">
+                  <li><a href="#" class="menu-item">전체상품</a></li>
+                </ul>
+              </li>
+              <li class="">
+                <a href="#">고객센터</a>
+                <ul class="mo-submenu">
+                  <li><a href="#" class="menu-item">공지사항</a></li>
+                  <li><a href="#" class="menu-item">공시사항</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
         </div>
       </header>
       <!-- end : header -->
@@ -291,10 +340,6 @@
 
               <!-- 슬라이더 오른쪽 갔을 떄 버튼이 안보인 이유는 swiper-wrap 안에 있어서 버튼을 보이게 하고 싶다면 영역 완전히 밖으로  -->
               <div class="banner-swiper-box">
-                <div class="button-box">
-                  <button class="banner-swiper-button-prev"></button>
-                  <button class="banner-swiper-button-next"></button>
-                </div>
                 <div class="banner-swiper-wrap">
                   <div class="banner-swiper-pagination">
                     <span class="swiper-pagination-current">1</span>
@@ -304,6 +349,10 @@
                   <button class="toggle-slide-button">
                     <span></span>
                   </button>
+                </div>
+                <div class="button-box">
+                  <button class="banner-swiper-button prev"></button>
+                  <button class="banner-swiper-button next"></button>
                 </div>
               </div>
               <div class="scroll-down-box">
@@ -322,73 +371,71 @@
         <!-- 두번쨰 추천테마(검색페이지지) -->
         <section id="searchFund">
           <div class="main-search-container">
-            <div class="inner">
-              <h2 class="section-title">추천테마</h2>
+            <h2 class="section-title">추천테마</h2>
 
-              <div class="main-inquiry-fund-con">
-                <div class="main-theme">
-                  <ul class="main-theme-list">
-                    <li>
-                      <a href="#" class="none">
-                        <img
-                          src="./Img/fund-theme-icon1.png"
-                          alt="펀드 아이콘1"
-                        />
-                        <p>#퇴직연금</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="none">
-                        <img
-                          src="./Img/fund-theme-icon2.png"
-                          alt="펀드 아이콘2"
-                        />
-                        <p>#ETF</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="none">
-                        <img
-                          src="./Img/fund-theme-icon3.png"
-                          alt="펀드 아이콘3"
-                        />
-                        <p>#EMP</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="none">
-                        <img
-                          src="./Img/fund-theme-icon4.png"
-                          alt="펀드 아이콘4"
-                        />
-                        <p>#TDF</p>
-                      </a>
-                    </li>
-                  </ul>
-                  <div class="go-fund-map">
-                    <a href="#" class="link-more">
-                      <i class="hidden">더보기</i>
+            <div class="main-inquiry-fund-con">
+              <div class="main-theme">
+                <ul class="main-theme-list">
+                  <li>
+                    <a href="#" class="none">
+                      <img
+                        src="./Img/fund-theme-icon1.png"
+                        alt="펀드 아이콘1"
+                      />
+                      <p>#퇴직연금</p>
                     </a>
-                  </div>
+                  </li>
+                  <li>
+                    <a href="#" class="none">
+                      <img
+                        src="./Img/fund-theme-icon2.png"
+                        alt="펀드 아이콘2"
+                      />
+                      <p>#ETF</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="none">
+                      <img
+                        src="./Img/fund-theme-icon3.png"
+                        alt="펀드 아이콘3"
+                      />
+                      <p>#EMP</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="none">
+                      <img
+                        src="./Img/fund-theme-icon4.png"
+                        alt="펀드 아이콘4"
+                      />
+                      <p>#TDF</p>
+                    </a>
+                  </li>
+                </ul>
+                <div class="go-fund-map">
+                  <a href="#" class="link-more">
+                    <i class="hidden">더보기</i>
+                  </a>
                 </div>
+              </div>
 
-                <div class="main-search-fund">
-                  <button class="main-btn-search-con">
-                    찾으시는 펀드를 검색해보세요.
-                  </button>
+              <div class="main-search-fund">
+                <button class="main-btn-search-con">
+                  찾으시는 펀드를 검색해보세요.
+                </button>
 
-                  <div class="main-keyword">
-                    <div class="main-keyword-wrap">
-                      <button class="main-btn-keyword">#공모주</button>
-                      <button class="main-btn-keyword">#ITF</button>
-                      <button class="main-btn-keyword">#플레인</button>
-                      <button class="main-btn-keyword">#럭셔리</button>
-                      <button class="main-btn-keyword">#켄쇼</button>
-                      <button class="main-btn-keyword">#베트남</button>
-                      <button class="main-btn-keyword">#KOSPI</button>
-                      <button class="main-btn-keyword">#그랑프리</button>
-                      <button class="main-btn-keyword">#롱숏</button>
-                    </div>
+                <div class="main-keyword">
+                  <div class="main-keyword-wrap">
+                    <button class="main-btn-keyword">#공모주</button>
+                    <button class="main-btn-keyword">#ITF</button>
+                    <button class="main-btn-keyword">#플레인</button>
+                    <button class="main-btn-keyword">#럭셔리</button>
+                    <button class="main-btn-keyword">#켄쇼</button>
+                    <button class="main-btn-keyword">#베트남</button>
+                    <button class="main-btn-keyword">#KOSPI</button>
+                    <button class="main-btn-keyword">#그랑프리</button>
+                    <button class="main-btn-keyword">#롱숏</button>
                   </div>
                 </div>
               </div>
@@ -411,7 +458,7 @@
                       <p class="badge">대표펀드#1</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 럭셔리 라이프스타일 증권 자투자신탁[주식]
                       </p>
                       <p class="med-ellipsis">
@@ -427,10 +474,10 @@
                       <p class="badge">대표펀드#2</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 단기 국공채 공모주 증 권 자투자신탁 1호[채권…
                       </p>
-                      <p class="med-ellipsis">
+                      <p class="med-ellipsis ellipsis">
                         공모주(IPO)와 국내 단기우량 채권 투자로 수익을 차곡차곡
                       </p>
                     </div>
@@ -443,10 +490,10 @@
                       <p class="badge">대표펀드#3</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 단기채 증권 자투자신 탁 [채권]
                       </p>
-                      <p class="med-ellipsis">
+                      <p class="med-ellipsis ellipsis">
                         우량한 신용등급, 잔존만기 1년 이내 단기채에 투자하여
                         리스크 최소화
                       </p>
@@ -460,10 +507,10 @@
                       <p class="badge">대표펀드#4</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 플레인바닐라 EMP 증 권투자신탁[혼합-재간접…
                       </p>
-                      <p class="med-ellipsis">
+                      <p class="med-ellipsis ellipsis">
                         고배당 인컴으로 다지고, 고성장 자 산으로 올리는 자산배분
                         EMP펀드
                       </p>
@@ -477,10 +524,10 @@
                       <p class="badge">대표펀드#5</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 단기채 증권 자투자신 탁 [채권]
                       </p>
-                      <p class="med-ellipsis">
+                      <p class="med-ellipsis ellipsis">
                         우량한 신용등급, 잔존만기 1년 이내 단기채에 투자하여
                         리스크 최소화
                       </p>
@@ -494,10 +541,10 @@
                       <p class="badge">대표펀드#6</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 단기채 증권 자투자신 탁 [채권]
                       </p>
-                      <p class="med-ellipsis">
+                      <p class="med-ellipsis ellipsis">
                         우량한 신용등급, 잔존만기 1년 이내 단기채에 투자하여
                         리스크 최소화
                       </p>
@@ -511,10 +558,10 @@
                       <p class="badge">대표펀드#7</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 단기채 증권 자투자신 탁 [채권]
                       </p>
-                      <p class="med-ellipsis">
+                      <p class="med-ellipsis ellipsis">
                         우량한 신용등급, 잔존만기 1년 이내 단기채에 투자하여
                         리스크 최소화
                       </p>
@@ -528,10 +575,10 @@
                       <p class="badge">대표펀드#8</p>
                     </div>
                     <div class="content-box">
-                      <p class="semi-ellipsis">
+                      <p class="semi-ellipsis ellipsis">
                         IBK 단기채 증권 자투자신 탁 [채권]
                       </p>
-                      <p class="med-ellipsis">
+                      <p class="med-ellipsis ellipsis">
                         우량한 신용등급, 잔존만기 1년 이내 단기채에 투자하여
                         리스크 최소화
                       </p>
@@ -709,7 +756,8 @@
           <div class="text-slogan">
             <p class="slo-title">IBK자산운용은 고객의 소중한 자산을 운용하여</p>
             <p class="section-title slo-title2">
-              그 수익을 고객에게 되돌려 드리는 자산운용 전문회사입니다.
+              그 수익을 고객에게 되돌려 드리는 <br />
+              자산운용 전문회사입니다.
             </p>
           </div>
 

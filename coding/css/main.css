@@ -4,14 +4,6 @@
   width: 100%;
 }
 
-.inner {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 175.2rem;
-
-  overflow: hidden;
-}
-
 #header {
   width: 100%;
 
@@ -200,16 +192,18 @@ li > a.submenu-item:focus {
   font-size: 1.9rem;
 }
 
-:is(.menu-util, .mo-util-menu) > .indicator-container {
+:is(.menu-util, .mo-menu-util) > .indicator-container {
   display: flex;
   align-items: center;
 }
 
 .indicator-container > .btn-search {
-  display: block;
   width: 4.8rem;
   height: 4.8rem;
-  background: url(../Img/icon-search-color.png) no-repeat 0 0 / contain;
+  background-image: url(../Img/icon-search-black-sv.svg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /* :has선택자 사용 이미지 바꾸기 */
@@ -217,7 +211,7 @@ header#header:has(.gnb:not(:hover))
   .menu-util
   > .indicator-container
   > .btn-search {
-  background: url(../Img/icon-search.png);
+  background-image: url(../Img/logo-search-white.svg);
 }
 
 /* :has선택자 사용하여 컬러 바꾸기 */
@@ -232,10 +226,6 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 
 .menu-util p a {
   padding: 1rem 1.6rem;
-}
-
-.menu-util p a .op7 {
-  opacity: 0.7;
 }
 
 /* 메인 페이지1 CSS */
@@ -262,7 +252,7 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   overflow: hidden;
 }
 
-.main-banner-item {
+#mainBanner :is(.swiper, .main-banner-item) {
   display: block;
   /*   background: #ff5; */
   width: 100%;
@@ -284,10 +274,6 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   background: #000;
 }
 
-.img-box > figure {
-  width: 100%;
-  height: 100%;
-}
 .img-box > figure img {
   width: inherit;
   height: 100%;
@@ -299,18 +285,22 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 .main-banner-text {
   max-width: 175.2rem;
   margin: 0 auto;
-
+  font-size: 6.8rem;
   position: absolute;
-  top: 50%;
-  left: 27%;
-  transform: translate(-50%, -50%);
+  bottom: 35%;
+  left: 14%;
+
+  letter-spacing: 0.01em;
+
+  /* 이 밑에 명령을 사용하면 텍스트 공간이 심하게 뒤틀림(반응형에 맞지않음 */
+  /*   transform: translate(-50%, -50%); */
   z-index: 100;
 }
 
 .main-banner-text p {
   font-family: "Pretendard";
   font-weight: 300;
-  font-size: 6.8rem;
+
   color: #fff;
   margin-top: 2rem;
 }
@@ -325,11 +315,12 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 
 .banner-swiper-box {
   display: flex;
+  flex-direction: row-reverse;
   position: absolute;
 
-  bottom: 20%;
+  bottom: 25%;
   left: 14%;
-  transform: translate(-50%, -50%);
+  /*   transform: translate(-50%, -50%); */
 
   z-index: 999;
 }
@@ -338,8 +329,7 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   display: flex;
 }
 
-.banner-swiper-button-prev,
-.banner-swiper-button-next {
+.banner-swiper-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -347,17 +337,17 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   height: 4rem;
   border-radius: 2rem;
 
-  background: #fff no-repeat center;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   cursor: pointer;
+  background-image: url(../Img/icon-arrow.svg);
 }
 
-.banner-swiper-button-prev {
-  background-image: url(../Img/icon-arrow-prev.png);
-}
-
-.banner-swiper-button-next {
-  background-image: url(../Img/icon-arrow-next.png);
+.banner-swiper-button.next {
   margin-left: 0.4rem;
+  transform: rotateZ(-180deg);
 }
 
 .banner-swiper-wrap {
@@ -374,16 +364,18 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   border-radius: 2rem;
 }
 
-.banner-swiper-pagination span {
-  font-family: "Pretendard";
+.banner-swiper-pagination {
   font-weight: 700;
+  font-family: "Pretendard";
 
   font-size: 1.8rem;
+}
+
+.banner-swiper-pagination span {
   margin-left: 0.2rem;
 }
 
 .banner-swiper-wrap .fence {
-  font-size: 1.6rem;
 }
 
 #mainBanner .toggle-slide-button > span {
@@ -400,7 +392,7 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 
 #mainBanner .toggle-slide-button.play > span {
   background: #fff;
-  mask-image: url(../Img/play-butto2.png);
+  mask-image: url(../Img/play-button.png);
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-position: center;
@@ -446,6 +438,7 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   display: flex;
   align-items: center;
   flex-direction: column;
+  z-index: 1;
 }
 
 .scroll-down-box p {
@@ -466,7 +459,12 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 }
 
 .main-search-container {
-  margin-top: 12rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 175.2rem;
+
+  overflow: hidden;
+  padding: 12rem 0 14rem;
 }
 
 .section-title {
@@ -914,7 +912,6 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 
 .img-slogan-con {
   width: 100%;
-  height: 50.6rem;
   background: url(../Img/slogan-img.png) no-repeat 0 0 / cover;
   margin-top: 6.4rem;
 }
@@ -1270,4 +1267,539 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   opacity: 0.6;
   font-weight: 400;
   font-size: 1.8rem;
+}
+
+.footer-copyright-wrapper img {
+  width: 7.6rem;
+  height: 5rem;
+}
+
+#mo-gnb {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 999;
+  overflow-y: auto;
+  margin-right: -250%;
+}
+
+.mo-only {
+  display: none;
+}
+
+.representative-fund-swiper > .swiper-wrap > .swiper-slide a > .img-box2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#slogan > .text-slogan > .section-title br {
+  display: none;
+}
+
+/* 반응형 시작 */
+
+@media screen and (max-width: 1920px) {
+  .main-search-container {
+    width: 94.5%;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1499px) {
+  .banner-swiper-box {
+    left: 9.5%;
+  }
+
+  .main-banner-text {
+    left: 9.5%;
+  }
+}
+
+/* 태블릿 기준 1024px */
+@media screen and (max-width: 1024px) {
+  .gnb {
+    display: none;
+  }
+  .pc_only {
+    display: none;
+  }
+
+  .mo-only {
+    display: block;
+  }
+
+  .indicator-container > .btn-search {
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+
+  .scroll-down-box {
+    display: none;
+  }
+
+  #mainBanner :is(.swiper, .main-banner-item) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .img-box {
+    width: 100%;
+    /*     height: 100%; */
+    background: none;
+  }
+  .img-box > figure img {
+    width: inherit;
+    height: 56.6rem;
+    max-width: none;
+  }
+
+  .main-banner-text {
+    font-size: 5.2rem;
+    letter-spacing: 0.02em;
+    bottom: 35%;
+
+    left: 6.5%;
+  }
+
+  .banner-swiper-box {
+    left: 6.5%;
+    bottom: 27%;
+  }
+
+  .banner-swiper-wrap {
+    height: 2.6rem;
+    padding: 0 1.2rem;
+    margin-left: 0.14rem;
+  }
+
+  .banner-swiper-pagination {
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+  .banner-swiper-wrap .toggle-slide-button,
+  .banner-swiper-wrap .toggle-slide-button.play > span {
+    margin-left: 0.8rem;
+  }
+  .banner-swiper-wrap .toggle-slide-button > span {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .banner-swiper-button {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  /* 모바일 메뉴 아이콘*/
+  .menu-util > .btn-mo-menu {
+    width: 5.6rem;
+    height: 5.6rem;
+    background: url(../Img/mobile-menu-s.svg) no-repeat;
+    background-size: contain;
+  }
+
+  header:not(.opened) .menu-util > .btn-mo-menu {
+  }
+
+  #header {
+    overflow: visible;
+    height: max(5.2rem, 52px);
+  }
+
+  /* 모바일 서브메뉴 opened 클래스  */
+  #header.opened #mo-gnb {
+    display: block;
+    margin-right: 0;
+    transition: 0.3s;
+  }
+
+  /* 모바일 서브 메뉴 */
+
+  #mo-gnb > .mo-menu-util {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    width: 100%;
+    height: 10.3rem;
+    padding: 0 3.28%;
+
+    z-index: 10;
+
+    font-family: "Pretendard";
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .lang-indicator > a {
+    color: #000 !important;
+    padding: 0.8rem;
+  }
+
+  #mo-gnb > .mo-menu-util > .indicator-container > .btn-home {
+    width: 5.6rem;
+    height: 5.6rem;
+    background: url(../Img/mo-menu-home.svg);
+    background-size: contain;
+  }
+
+  #mo-gnb > .mo-menu-util > .lang-indicator p {
+    margin-left: 1.2rem;
+  }
+
+  #mo-gnb > .mo-menu-util > .btn-mo-menu.close {
+    width: 5.6rem;
+    height: 5.6rem;
+    background: url(../Img/mo-menu-close.svg) no-repeat;
+    background-size: contain;
+  }
+
+  #mo-gnb > .mo-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 11.3rem 3.2rem;
+  }
+
+  #mo-gnb > .mo-menu > li {
+    margin-top: 1.4rem;
+  }
+
+  #mo-gnb > .mo-menu > li:first-child {
+    margin-top: 0;
+  }
+
+  #mo-gnb > .mo-menu > li > a {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 1.6rem 0;
+    font-size: 3.2rem;
+    line-height: 1.5;
+    font-weight: 700;
+  }
+
+  #mo-gnb > .mo-menu > li > a::after {
+    content: "";
+    position: absolute;
+    width: 2.8rem;
+    height: 2.8rem;
+    top: 50%;
+    right: 0;
+    background: url(../Img/icon-arrow.svg) no-repeat;
+    transform: translateY(-50%) rotateZ(-90deg);
+    background-size: contain;
+    transition: 0.3s;
+  }
+
+  /* active */
+  #mo-gnb > .mo-menu > li.active > a::after {
+    transform: rotateZ(90deg);
+  }
+
+  /* 모바일 서브메뉴에 숨겨진 서브메뉴 */
+  #mo-gnb > .mo-menu > li > .mo-submenu {
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+
+  #mo-gnb > .mo-menu > li.active > .mo-submenu {
+    height: 18rem;
+    margin-top: 0.4rem;
+    padding-bottom: 3.2rem;
+    border-bottom: 1px solid #dadada;
+    overflow: visible;
+  }
+
+  #mo-gnb > .mo-menu > li > ul > li > a {
+    display: block;
+    width: 100%; /* display : black 명령 없이는 적용 안됨. inline */
+    padding: 0.6rem;
+    font-size: 2.5rem;
+    line-height: 1.625;
+    font-weight: 500;
+  }
+
+  /* 추천테마 부분 */
+  .main-search-container {
+    width: 87.5%;
+    padding: 3rem 0 3rem;
+  }
+
+  .main-theme-list {
+    margin-top: 1.8rem;
+    gap: 1.2rem;
+  }
+
+  .main-theme-list li a {
+    padding: 2rem;
+    border-radius: 1.8rem;
+  }
+
+  .main-theme-list li a > img {
+    width: 6.8rem;
+  }
+
+  .main-theme-list li a > p {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+  }
+
+  .main-search-fund {
+    margin-top: 2.4rem;
+  }
+
+  .main-btn-search-con {
+    height: 7.4rem;
+    font-size: 2.2rem;
+    padding: 0 2rem 0 4rem;
+    border-width: 2px;
+    background-position: calc(100% - 2rem) 50%;
+    background-size: 5rem;
+  }
+
+  .main-keyword-wrap {
+    margin-top: 2rem;
+  }
+
+  .main-btn-keyword {
+    display: none;
+  }
+
+  /* 자산운용 대표펀드  */
+
+  #representativeFund {
+    margin-top: 0;
+    background: none;
+  }
+
+  .main-con {
+    width: 87.5%;
+    padding: 3rem 0 3rem;
+  }
+
+  .section-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+  }
+
+  .representative-fund-swiper {
+    margin-top: 5.2rem;
+  }
+
+  .representative-fund-swiper > .swiper-wrap > .swiper-slide {
+    width: 28rem !important;
+    margin-right: 1rem;
+    border-radius: 1.4rem;
+  }
+
+  .representative-fund-swiper > .swiper-wrap > .swiper-slide a > .img-box2 {
+    height: 22rem;
+  }
+  .representative-fund-swiper > .swiper-wrap > .swiper-slide a .badge {
+    right: 2rem;
+  }
+
+  .content-box {
+    height: 20rem;
+    padding: 2.1rem 1.2rem 2.4rem 1.2rem;
+  }
+
+  .semi-ellipsis {
+    word-break: keep-all;
+    font-size: 3rem;
+    line-height: 1.5;
+  }
+  .med-ellipsis {
+    margin-top: 0.2rem;
+    font-size: 2rem;
+    line-height: 1.5;
+  }
+
+  .swiper-custom-pagination-box {
+    margin-top: 1.6rem;
+  }
+
+  .custom-button-prev {
+    margin-right: 0.6rem;
+  }
+
+  .custom-button-next {
+    margin-left: 0.6rem;
+  }
+
+  .custom-button-prev,
+  .custom-button-next {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+
+  .swiper-custom-pagination-box > .custom-swiper-pagination {
+    gap: 0.05rem;
+  }
+
+  .swiper-pagination-bullet {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .custom-swiper-pagination > .swiper-pagination-bullet-active {
+    width: 2.8rem;
+  }
+
+  .toggle-auto-button > span {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.4rem;
+  }
+
+  .btn-date {
+    margin-top: 3rem;
+    gap: 1.8rem;
+  }
+
+  #TOP5Profitability > .main-con {
+    padding-bottom: 6rem;
+  }
+
+  .btn-date li button {
+    padding: 1rem 2.4rem;
+    font-size: 2.6rem;
+  }
+
+  .btn-date li.active button {
+    font-size: 2.6rem;
+    font-weight: 700;
+  }
+
+  .fund-button-wrap {
+    margin-top: 2.4rem;
+    gap: 0.2rem;
+  }
+
+  .prev-button,
+  .next-button {
+    width: 3.8rem;
+    height: 3.8rem;
+  }
+
+  #TOP5Profitability .swiper-top5 {
+    margin-top: 0.9rem;
+  }
+
+  .swiper-slide-fund {
+    width: 38rem;
+    padding: 2.8rem 3.2rem 1.6rem;
+    border-radius: 2.6rem;
+    margin-right: 1.2rem;
+  }
+
+  .swiper-slide-fund .subtitle1 {
+    font-size: 2.8rem;
+    line-height: 1.5;
+  }
+
+  .swiper-slide-fund .subtitle2 {
+    margin-top: 1.9rem;
+    font-size: 2.8rem;
+  }
+
+  .fund-item-wrapper {
+    margin-top: 6.5rem;
+  }
+
+  .fund-item-wrapper .fund-title {
+    font-size: 1.9rem;
+    line-height: 1.5;
+  }
+
+  .fund-item-wrapper .Fund-img {
+    width: 31.5rem;
+    height: 15.7rem;
+
+    min-height: 15.8rem;
+  }
+
+  .fund-item-rate-wrapper {
+    margin-top: 3rem;
+  }
+
+  .fund-item-rate-wrapper .rate-title {
+    font-size: 1.9rem;
+    line-height: 1.5;
+  }
+
+  .fund-item-rate-wrapper .rate-title2 {
+    font-size: 3.8rem;
+    line-height: 1.5;
+  }
+
+  /* 슬로건 영역 */
+
+  .slo-title {
+    font-size: 2.6rem;
+    line-height: 1.5;
+  }
+
+  .section-title {
+    font-size: 3.84rem;
+    margin-top: 0.6rem;
+    line-height: 1.5;
+  }
+
+  #slogan > .text-slogan > .section-title br {
+    display: block;
+  }
+
+  .img-slogan-con {
+    margin-top: 3.8rem;
+  }
+
+  .img-slogan-wrap {
+    padding: 2.6rem 0;
+  }
+
+  .img-slogan-item {
+    padding: 3.8rem 0;
+  }
+
+  .img-slogan-box {
+    width: 10rem;
+    height: 10rem;
+    padding: 1.4rem;
+  }
+
+  .img-slogan-item p {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin-top: 0.6rem;
+  }
+
+  /* 공지사항 페이지 */
+  #main-notice > .main-con {
+    padding: 9.6rem 0 14rem;
+  }
+
+  .main-notice-wrap {
+    width: 100%;
+    grid-template-columns: 1fr;
+
+    gap: 9.6rem;
+  }
+
+  .notice-list h3 {
+    text-align: center;
+  }
+
+  #btn-plus {
+    width: 3.8rem;
+    height: 3.8rem;
+    top: 1.1rem;
+    left: auto;
+    right: 0.6rem;
+  }
 }

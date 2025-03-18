@@ -32,6 +32,8 @@ a:hover {
 
 img {
   vertical-align: top;
+  width: 100%;
+  max-width: 100%;
 }
 
 html,
@@ -88,4 +90,8 @@ body {
   100% {
     transform: translateY(-0.5rem);
   }
+}
+
+:root {
+  --clientWidth: 100vw;
 }

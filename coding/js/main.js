@@ -1,4 +1,30 @@
 $(function () {
+  // 브라우저 창(뷰포트)의 너비와 높이룰 가져오는 코드
+  // 스크롤바 제외한 순수한 화면 크기
+  // document.documentElement - HTML 문서의 <html></html>요소를 가리킨다.
+  let clientWidth = document.documentElement.clientWidth;
+  let clientHeight = document.documentElement.clientHeight;
+
+  //현재 브라우저 크기(너비, 높이)를 가져와서 CSS 변수에 저장
+  //초기 clientWidth root(--clientWidth)에 할당
+  setClientWidthHeight(clientWidth, clientHeight);
+
+  // 브라우저 크기가 변할 때마다 (resize 이벤트 발생)
+  // 다시 clientWidth , clientHeight 값을 가져와 업데이트
+  // 변경된 값을 setClientWidthHeight() 함수에 전달하여 반영
+  window.addEventListener("resize", function (e) {
+    clientWidth = document.documentElement.clientWidth;
+    clientHeight = document.documentElement.clientHeight;
+
+    setClientWidthHeight(clientWidth, clientHeight);
+
+    //모바일 메뉴가 열린 상태에서 브라우저 크기 변경 시, 메뉴 닫기 버튼 클릭
+    if (document.querySelector("#header").classList.contains("opened")) {
+      // .btn-mo-menu.close 버튼을 강제 클릭.
+      document.querySelector(".btn-mo-menu.close").click();
+    }
+  });
+
   // swiper slide 구현 js
   let bannerSwiper = new Swiper(".banner-swiper", {
     sliderPerView: 1, // 이걸 사용해야 화면에 원활하게 구현
@@ -46,12 +72,13 @@ $(function () {
     document.querySelector("#mainBanner .banner-swiper-button-next"),
     document.querySelector("#mainBanner .banner-swiper-button-prev"),
   ];
-  focusHandlerList.forEach((item) => {
+
+  /*   focusHandlerList.forEach((item) => {
     item.addEventListener("focus", () => {
       const isAutoPlaying = bannerSwiper.autoplay.running;
       if (isAutoPlaying) bannerSwiper.autoplay.stop();
     });
-  });
+  }); */
 
   // 추천테마 제어하기 위한 전역변수
   const themeHandlerStatus = {
@@ -308,5 +335,69 @@ $(function () {
       // footer util select button blur 이벤트 함수 호출
       onBlurSelectButton(selectButton);
     });
+  }
+
+  /* 모바일 메뉴 활성화를 위한 JS  */
+  function onClickButtonMobileMenu() {
+    const header = document.querySelector("#header");
+    const mobileMenu = document.querySelectorAll("#mo-gnb > .mo-menu > li > a");
+
+    console.log(header, mobileMenu);
+    //header 내부의 햄버거, 닫기 버튼에 클릭 이벤트 적용
+    /* 유사 배열을 실제 배열 (Array)로 변환 */
+    Array.from(header.querySelectorAll(".btn-mo-menu")).forEach((button) => {
+      // 버튼에 forEach를 사용하여 각각의 이벤트 추가(click)
+      button.addEventListener("click", () => {
+        //열려있는 모든 submenu 닫기 상태로 초기화
+        // mobileMenu 배열을 순회하면서
+        Array.from(mobileMenu).forEach((element) => {
+          // 각 a태그의 부모 li를 가지고 온다.
+          const li = element.parentElement;
+          // 만약 li에 active클래스가 포함되어 있다면
+          if (li.classList.contains("active")) {
+            // li에 active클래스를 지워라
+            li.classList.remove("active");
+          }
+        });
+
+        //header에 opened class 존재 유무로 show/hide
+        if (header.classList.contains("opened")) {
+          document.documentElement.style.overflow = "auto";
+          header.classList.remove("opened");
+        } else {
+          document.documentElement.style.overflow = "hidden";
+          header.classList.add("opened");
+        }
+      });
+    });
+  }
+
+  onClickButtonMobileMenu();
+  removeMobileSubmenuActive();
+
+  // 이 함수의 역할은 서브메뉴를 클릭하면 펼쳐지거나 닫히도록(.active 클래스 토글)동작
+  function removeMobileSubmenuActive() {
+    const mobileMenu = document.querySelectorAll("#mo-gnb > .mo-menu > li > a");
+    Array.from(mobileMenu).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        e.preventDefault(); // 기본 링크 이동을 방지
+        if (clientWidth <= 1024) {
+          const list = e.target.parentElement;
+          list.classList.toggle("active");
+        }
+      });
+    });
+  }
+
+  /* 스크롤바를 제외한 뷰포트의 너비를 root에 할당하는 함수 */
+  function setClientWidthHeight(clientWidth, clientHeight) {
+    document.documentElement.style.setProperty(
+      "--clientWidth",
+      clientWidth + "px"
+    );
+    document.documentElement.style.setProperty(
+      "--clientHeight",
+      clientHeight + "px"
+    );
   }
 });
