@@ -1086,13 +1086,15 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   /*   border: 1px solid #000; */
   display: flex;
   justify-content: space-between;
-  /*   align-items: center; */
   height: 100%;
-
   font-weight: 300;
   font-size: 1.8rem;
 
   margin-bottom: 5rem;
+
+  /* container Queries(컨테이너 쿼리를 쓰기 위해서 필요한 HTML */
+  container-name: footer-gnb;
+  container-type: inline-size;
 }
 
 .footer-menu {
@@ -1116,7 +1118,9 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 
 .footer-util .select-wrap {
   position: relative;
-  width: 19rem;
+  /*   width: 19rem; */
+  /* 최소 크기를 주는 이유는 반응형을 위한 것이였음. */
+  min-width: 19rem;
   height: fit-content;
   line-height: 1.33;
 }
@@ -1191,6 +1195,7 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   transition: 0.3s;
 }
 
+/* container Queries 컨테이너 쿼리 사용 */
 .footer-address {
   display: flex;
   align-items: center;
@@ -1200,18 +1205,20 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
   vertical-align: middle;
 
   margin-bottom: 4rem;
+
+  /* 필요한 HTML */
+  container-name: footer-address;
+  container-type: inline-size;
 }
 
 .footer-logo {
   width: 13.6rem;
-  height: 100%;
   margin-right: 2rem;
 }
 .footer-logo img {
   display: block;
-  max-width: 100%;
   width: 100%;
-  height: 100%;
+  max-width: 100%;
 }
 
 .footer-address p {
@@ -1296,6 +1303,10 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
 }
 
 #slogan > .text-slogan > .section-title br {
+  display: none;
+}
+
+.footer-address p > br {
   display: none;
 }
 
@@ -1801,5 +1812,144 @@ header#header:has(.gnb:not(:hover)) .lang-indicator:last-child > a {
     top: 1.1rem;
     left: auto;
     right: 0.6rem;
+  }
+
+  .notice-list ul {
+    border-radius: 2.6rem;
+    padding: 1.9rem 3.2rem;
+  }
+
+  .main-notice li a {
+    padding: 1.3rem 0.5rem 1.3rem;
+  }
+
+  .main-notice .notice-title1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+
+  .main-notice .notice-title2 {
+    font-size: 1.9rem;
+    margin-left: 1.2rem;
+  }
+
+  /* footer 관련 반응형 */
+
+  .in-footer {
+    width: 87.5%;
+    padding: 7rem 0;
+    margin: 0 auto;
+  }
+
+  .footer-gnb {
+    /* flex를 세로로 만들고 위치를 반대로 바꾸고 싶을 때때 */
+    flex-direction: column-reverse;
+    line-height: 1.43;
+    margin-bottom: 5.8rem;
+    font-size: 2.2rem;
+    font-weight: 400;
+  }
+
+  .footer-menu {
+    flex-direction: column;
+    margin-top: 4rem;
+  }
+
+  .footer-util {
+    gap: 2rem;
+  }
+
+  .footer-address {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 2.6rem;
+  }
+
+  .footer-address p > br {
+    display: block;
+  }
+
+  .footer-address p span {
+    display: none;
+  }
+
+  .footer-logo {
+    width: 20.8rem;
+    margin-bottom: 2.6em;
+  }
+
+  .footer-address > p,
+  .footer-notice,
+  .footer-copyright-wrapper > p {
+    font-size: 1.9rem;
+    line-height: 1.5;
+  }
+  .footer-address > p {
+    line-height: 1.8;
+  }
+
+  .footer-copyright-wrapper {
+    flex-direction: column;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .footer-copyright-wrapper img {
+    margin-top: 2.4rem;
+  }
+}
+
+/* 2. 이걸 사용 시 menu의 글이 틀어지기 때문에 수술 CSS */
+@media screen and (max-width: 1920px) {
+  .footer-menu {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0 3rem;
+    max-width: none;
+  }
+}
+
+/* 1. container Queries(컨테이너 쿼리)를 사용한 CSS */
+/* 뷰포트 크기가 아니라 특정 요소의 크기에 따라 스타일을 적용하는 방식 */
+@media screen and (min-width: 1024px) {
+  @container footer-gnb (max-width:1620px) {
+    .footer-menu {
+      max-width: 62rem;
+    }
+  }
+}
+
+/* container Queries 컨테이너 쿼리를 사용하여 줄 간격 바꾸기 */
+@media screen and (max-width: 1499px) {
+  @media screen and (min-width: 1025px) {
+    @container footer-address (max-width : 1040px) {
+      .footer-address > p {
+        line-height: 1.8;
+      }
+    }
+  }
+}
+
+/* 줄을 바꾸기 위해서 <br> display:none 상태에서 block으로 바꾸기 */
+@media screen and (max-width: 1499px) {
+  @media screen and (min-width: 1025px) {
+    @container footer-address (max-width : 1040px) {
+      .footer-address > p > br:nth-child(2) {
+        display: block;
+      }
+    }
+  }
+}
+
+/* span에 before없애기  */
+@media screen and (max-width: 1499px) {
+  @media screen and (min-width: 1025px) {
+    @container footer-address (max-width : 1040px) {
+      .footer-address > p > span:first-of-type {
+        display: none;
+      }
+    }
   }
 }
